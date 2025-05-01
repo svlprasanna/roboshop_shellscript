@@ -2,7 +2,7 @@
 
 ID=$(id -u)
 TIMESTAMP=$(date +%F-%H-%M-%S)
-LOGFILE="/tmp/$0-$TIMESTAMP.log"
+LOGFILE="/tmp/mongo.log"
 echo -e "$Y script started running at $TIMESTAMP $N"
 
 R="\e[31m"
