@@ -2,8 +2,8 @@
 
 ID=$(id -u)
 TIMESTAMP=$(date +%F-%H-%M-%S)
-LOGFILE="/tmp/new.log"
-echo -e "$Y script started running at $TIMESTAMP $N" &>> $LOGFILE
+LOGFILE="/tmp/$0-$TIMESTAMP.log"
+echo -e "$Y script started running at $TIMESTAMP $N"
 
 R="\e[31m"
 G="\e[32m"
@@ -17,7 +17,7 @@ VALIDATE(){
     else
     echo -e "installation of $G $2 is success $N"
 fi
-} &>> $LOGFILE
+}
 
 cp mongo.repo /etc/yum.repos.d/
 
