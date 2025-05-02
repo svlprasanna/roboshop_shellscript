@@ -66,7 +66,7 @@ VALIDATE $? "copying mongo repo file"
 dnf install mongodb-org-shell -y
 VALIDATE $? "installing mongodb"
 
-mongo --host MONGODB-SERVER-IPADDRESS </app/schema/catalogue.js
+mongo --host mongodb.lakshmimohan.shop </app/schema/catalogue.js
 VALIDATE $? "loading catalogue data into mongodb"
 
 
