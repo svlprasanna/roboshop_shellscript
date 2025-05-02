@@ -51,3 +51,5 @@ VALIDATE $? "updating listen address"
 
 systemctl start redis
 VALIDATE $? "starting redis"
+
+netstat -lntp
