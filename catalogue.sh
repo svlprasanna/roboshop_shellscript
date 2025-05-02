@@ -51,11 +51,11 @@ curl -o /tmp/catalogue.zip https://roboshop-builds.s3.amazonaws.com/catalogue.zi
 VALIDATE $? "downloading catalogue zip file"
 
 cd /app 
-unzip /tmp/catalogue.zip
+unzip -o /tmp/catalogue.zip
 npm install 
 VALIDATE $? "installing dependencies"
 
-cp /home/centos/roboshop-shellscript/catalogue.service /etc/systemd/system/
+cp /home/centos/roboshop_shellscript/catalogue.service /etc/systemd/system/
 VALIDATE $? "catalogue.service file created"
 
 systemctl daemon-reload
@@ -67,7 +67,7 @@ VALIDATE $? "enable the catalogue"
 systemctl start catalogue
 VALIDATE $? "start the catalague"
 
-cp /home/centos/roboshop-shellscript/mongo.repo /etc/yum.repos.d/
+cp /home/centos/roboshop_shellscript/mongo.repo /etc/yum.repos.d/
 VALIDATE $? "copying mongo repo file"
 
 dnf install mongodb-org-shell -y
