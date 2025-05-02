@@ -28,7 +28,7 @@ VALIDATE(){
 fi
 }
 
-dnf install https://rpms.remirepo.net/enterprise/remi-release-8.rpm -y
+sudo dnf install https://rpms.remirepo.net/enterprise/remi-release-8.rpm -y
 VALIDATE $? "installing redis repo files"
 
 dnf module enable redis:remi-6.2 -y
