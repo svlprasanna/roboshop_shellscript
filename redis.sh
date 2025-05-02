@@ -28,20 +28,26 @@ VALIDATE(){
 fi
 }
 
-sudo dnf install https://rpms.remirepo.net/enterprise/remi-release-8.rpm -y
+sudo dnf module reset redis -y
+sudo dnf module enable redis:remi-7.0 -y
+sudo dnf install redis -y
+
+
+#sudo dnf install https://rpms.remirepo.net/enterprise/remi-release-8.rpm -y
 VALIDATE $? "installing redis repo files"
 
-dnf module enable redis:remi-6.2 -y
+#dnf module enable redis:remi-6.2 -y
+sudo systemctl enable --now redis
 VALIDATE $? "enabling redis packages"
 
-dnf install redis -y
-VALIDATE $? "installing redis"
+#dnf install redis -y
+#VALIDATE $? "installing redis"
 
 sed -e 's/127.0.0.1/0.0.0.0/g' /etc/redis.conf
 VALIDATE $? "updating listen address"
 
-systemctl enable redis
-VALIDATE $? "enabling redis"
+#systemctl enable redis
+#VALIDATE $? "enabling redis"
 
 systemctl start redis
 VALIDATE $? "starting redis"
