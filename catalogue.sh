@@ -35,10 +35,16 @@ VALIDATE $? "enabling nodejs 18"
 dnf install nodejs -y
 VALIDATE $? "installing nodejs"
 
+id roboshop
+if [ id -ne 0 ] 
+then
 useradd roboshop
-VALIDATE $? "user adding"
+VALIDATE $? "adding roboshop user"
+else
+echo " user roboshop already exists so skipping.."
+fi
 
-mkdir /app
+mkdir -p /app
 VALIDATE $? "creating app directory"
 
 curl -o /tmp/catalogue.zip https://roboshop-builds.s3.amazonaws.com/catalogue.zip
