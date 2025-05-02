@@ -58,7 +58,7 @@ npm install
 VALIDATE $? "installing the dependencies"
 
 cp /home/centos/roboshop_shellscript/cart.service /etc/systemd/system/
-VALIDATE $? "craeting a file cart.service"
+VALIDATE $? "creating a file cart.service"
 
 systemctl daemon-reload
 VALIDATE $? "daemon loading"
