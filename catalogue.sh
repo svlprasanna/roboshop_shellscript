@@ -10,6 +10,14 @@ G="\e[32m"
 Y="\e[33m"
 N="\e[0m"
 
+if [ $ID -ne 0 ]
+then
+echo "error:please run with root access"
+exit 1
+else
+echo "you are root user"
+fi
+
 VALIDATE(){
     if [ $1 -ne 0 ]
     then
@@ -25,3 +33,43 @@ VALIDATE $? "enabling nodejs 18"
 
 dnf install nodejs -y
 VALIDATE $? "installing nodejs"
+
+useradd roboshop
+VALIDATE $? "user adding"
+
+mkdir /app
+VALIDATE $? "creating app directory"
+
+curl -o /tmp/catalogue.zip https://roboshop-builds.s3.amazonaws.com/catalogue.zip
+VALIDATE $? "downloading catalogue zip file"
+
+cd /app 
+unzip /tmp/catalogue.zip
+npm install 
+VALIDATE $? "installing dependencies"
+
+cp /home/centos/roboshop-shellscript/catalogue.service /etc/systemd/system/
+VALIDATE $? "catalogue.service file created"
+
+systemctl daemon-reload
+VALIDATE $? "catalogue daemon reload"
+
+systemctl enable catalogue
+VALIDATE $? "enable the catalogue"
+
+systemctl start catalogue
+VALIDATE $? "start the catalague"
+
+cp /home/centos/roboshop-shellscript/mongo.repo /etc/yum.repos.d/
+VALIDATE $? "copying mongo repo file"
+
+dnf install mongodb-org-shell -y
+VALIDATE $? "installing mongodb"
+
+mongo --host MONGODB-SERVER-IPADDRESS </app/schema/catalogue.js
+VALIDATE $? "loading catalogue data into mongodb"
+
+
+
+
+

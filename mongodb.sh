@@ -10,6 +10,14 @@ G="\e[32m"
 Y="\e[33m"
 N="\e[0m"
 
+if [ $ID -ne 0 ]
+then
+echo "error:please run with root access"
+exit 1
+else
+echo "you are root user"
+fi
+
 VALIDATE(){
     if [ $1 -ne 0 ]
     then
