@@ -67,6 +67,9 @@ VALIDATE $? "enable the user service"
 systemctl start user
 VALIDATE $? "starting the user service"
 
+cp /home/centos/roboshop_shellscript/mongo.repo /etc/yum.repos.d/
+VALIDATE $? "creating mongo repository"
+
 dnf install mongodb-org-shell -y
 VALIDATE $? "installing mongodb client"
 
