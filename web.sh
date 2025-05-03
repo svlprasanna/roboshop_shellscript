@@ -45,5 +45,6 @@ cd /usr/share/nginx/html
 unzip -o /tmp/web.zip
 VALIDATE $? "unzip the content"
 
+cp /home/centos/roboshop_shellscript/roboshop.conf /etc/nginx/default.d/
 systemctl restart nginx
 VALIDATE $? "restart the nginx"
