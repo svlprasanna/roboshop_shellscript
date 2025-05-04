@@ -21,17 +21,19 @@ fi
 VALIDATE(){
     if [ $1 -ne 0 ]
     then
-    echo -e "installation of $R $2 failed $N"
+    echo -e "$R $2 failed $N"
     exit 1
     else
-    echo -e "installation of $G $2 is success $N"
+    echo -e "$G $2 is success $N"
 fi
 }
 
 dnf install nginx -y
 VALIDATE $? "installing nginx"
+
 systemctl enable nginx
 VALIDATE $? "enabling nginx"
+
 systemctl start nginx
 VALIDATE $? "starting nginx"
 
