@@ -21,10 +21,10 @@ fi
 VALIDATE(){
     if [ $1 -ne 0 ]
     then
-    echo -e "installation of $R $2 failed $N"
+    echo -e "$R $2 failed $N"
     exit 1
     else
-    echo -e "installation of $G $2 is success $N"
+    echo -e "$G $2 is success $N"
 fi
 }
 
@@ -46,10 +46,8 @@ VALIDATE $? "enabling redis packages"
 sed -i 's/127.0.0.1/0.0.0.0/g' /etc/redis-sentinel.conf
 VALIDATE $? "updating listen address"
 
-#systemctl enable redis
-#VALIDATE $? "enabling redis"
+systemctl enable redis
+VALIDATE $? "enabling redis"
 
 systemctl start redis
 VALIDATE $? "starting redis"
-
-netstat -lntp
