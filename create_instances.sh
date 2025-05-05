@@ -24,14 +24,14 @@ aws route53 change-resource-record-sets \
   --change-batch "{
     "Comment": "Creating A record for web.example.com",
     "Changes": [{
-      "Action": "UPSERT",
+      "Action": "CREATE",
       "ResourceRecordSet": {
-        "Name": "$i.lakshmimohan.shop.",
+        "Name": "$i.lakshmimohan.shop",
         "Type": "A",
         "TTL": 1,
         "ResourceRecords": [{
-          \"Value\": \"$IP\"
+          "Value": "$IP"
         }]
       }
     }]
-  }"
+}"
