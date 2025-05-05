@@ -21,7 +21,7 @@ done
 #create route 53 record and make sure you record existing records
 aws route53 change-resource-record-sets \
   --hosted-zone-id Z0130626BG9FTXQYX8T \
-  --change-batch '{
+  --change-batch "{
     "Comment": "Creating A record for web.example.com",
     "Changes": [{
       "Action": "UPSERT",
@@ -30,8 +30,8 @@ aws route53 change-resource-record-sets \
         "Type": "A",
         "TTL": 1,
         "ResourceRecords": [{
-          "Value": "$IP"
+          \"Value\": \"$IP\"
         }]
       }
     }]
-  }'
+  }"
