@@ -14,5 +14,6 @@ do
         INSTANCE_TYPE="t2.micro"
     fi
     
-    aws ec2 run-instances     --image-id ami-0b4f379183e5706b9     --instance-type t2.micro     --security-group-ids sg-0d22010b6339646b9     --subnet-id subnet-04695b2ccf75059d7     --tag-specifications "ResourceType=instance,Tags=[{Key=Name,Value=$i}]" --query "Instances[0].PrivateIpAddress"     --output text
+    IP_ADD=(aws ec2 run-instances     --image-id ami-0b4f379183e5706b9     --instance-type t2.micro     --security-group-ids sg-0d22010b6339646b9     --subnet-id subnet-04695b2ccf75059d7     --tag-specifications "ResourceType=instance,Tags=[{Key=Name,Value=$i}]" --query "Instances[0].PrivateIpAddress"     --output text)
+    echo "$i: $IP_ADD"
 done
