@@ -1,6 +1,6 @@
 #!/bin/bash
 
-AMI=ami-0b4f379183e5706b
+AMI=ami-0b4f379183e5706b9
 SG_ID=sg-0d22010b6339646b9
 INSTANCES=("mongodb" "redis" "mysql" "rabbitmq" "catalogue" "user" "cart" "shipping" "payment" "dispatch" "web")
 
