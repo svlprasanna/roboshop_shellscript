@@ -17,3 +17,21 @@ do
     IP=$(aws ec2 run-instances     --image-id ami-0b4f379183e5706b9     --instance-type t2.micro     --security-group-ids sg-0d22010b6339646b9     --subnet-id subnet-04695b2ccf75059d7     --tag-specifications "ResourceType=instance,Tags=[{Key=Name,Value=$i}]" --query "Instances[0].PrivateIpAddress"     --output text)
     echo "$i: $IP"
 done
+
+#create route 53 record and make sure you record existing records
+aws route53 change-resource-record-sets \
+  --hosted-zone-id Z0130626BG9FTXQYX8T \
+  --change-batch '{
+    "Comment": "Creating A record for web.example.com",
+    "Changes": [{
+      "Action": "UPSERT",
+      "ResourceRecordSet": {
+        "Name": "$i.lakshmimohan.shop.",
+        "Type": "A",
+        "TTL": 1,
+        "ResourceRecords": [{
+          "Value": "$IP"
+        }]
+      }
+    }]
+  }'
